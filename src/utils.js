@@ -26,3 +26,12 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+export function getTimesClickedText(timesClicked) {
+  if (timesClicked === 2 || timesClicked === 3 || timesClicked === 4) {
+    return `Выделяли ${timesClicked} раза`;
+  } else {
+    return `Выделяли ${timesClicked} раз`;
+  }
+}
+

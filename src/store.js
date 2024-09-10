@@ -3,10 +3,15 @@
  */
 class Store {
   constructor(initState = {}) {
+    const initializedList = (initState.list || []).map(item => ({
+      ...item,
+      timesClicked: item.timesClicked || 0,
+    }));
+
     this.state = {
       ...initState,
-      list: initState.list || [],
-      nextCode: initState.nextCode || initState.list.length + 1,
+      list: initializedList,
+      nextCode: initState.nextCode || initializedList.length + 1,
     };
     this.listeners = []; // Слушатели изменений состояния
   }
@@ -59,6 +64,7 @@ class Store {
       code: this.addNewCode(),
       title: 'Новая запись',
       selected: false,
+      timesClicked: 0,
     }
     this.setState({
       ...this.state,
@@ -87,6 +93,7 @@ class Store {
       list: this.state.list.map(item => ({
         ...item,
         selected: item.code === code ? !item.selected : false,
+        timesClicked: (item.code === code && !item.selected) ? (item.timesClicked || 0) + 1 : item.timesClicked,
       })),
     });
   }
