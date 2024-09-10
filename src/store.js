@@ -3,8 +3,21 @@
  */
 class Store {
   constructor(initState = {}) {
-    this.state = initState;
+    this.state = {
+      ...initState,
+      list: initState.list || [],
+      nextCode: initState.nextCode || initState.list.length + 1,
+    };
     this.listeners = []; // Слушатели изменений состояния
+  }
+
+  addNewCode() {
+    const nextCode = this.state.nextCode;
+    this.setState({
+      ...this.state,
+      nextCode: nextCode + 1,
+    });
+    return nextCode;
   }
 
   /**
@@ -42,9 +55,14 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+    const itemNew = {
+      code: this.addNewCode(),
+      title: 'Новая запись',
+      selected: false,
+    }
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }],
+      list: [...this.state.list, itemNew],
     });
   }
 
