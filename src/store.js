@@ -8,12 +8,26 @@ class Store {
       timesClicked: item.timesClicked || 0,
     }));
 
+    const maxExistingCode = this.getMaxCode(initializedList);
+
     this.state = {
       ...initState,
       list: initializedList,
-      nextCode: initState.nextCode || initializedList.length + 1,
+      // использую максимальный код + 1 для следующего nextCode
+      nextCode: initState.nextCode || maxExistingCode + 1,
     };
     this.listeners = []; // Слушатели изменений состояния
+  }
+
+  /**
+   * Функция для поиска максимального значения кода в списке
+   * @param list {Array} Список элементов
+   * @returns {number} Максимальный код
+   */
+  getMaxCode(list) {
+    return list.reduce((max, item) => {
+      return item.code > max ? item.code : max;
+    }, 0);
   }
 
   addNewCode() {
@@ -65,7 +79,7 @@ class Store {
       title: 'Новая запись',
       selected: false,
       timesClicked: 0,
-    }
+    };
     this.setState({
       ...this.state,
       list: [...this.state.list, itemNew],
