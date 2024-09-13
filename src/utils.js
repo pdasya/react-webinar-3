@@ -1,4 +1,5 @@
 const propNames = new Set(['id', 'className', 'textContent', 'onclick']);
+const pluralRules = new Intl.PluralRules('ru');
 
 /**
  * Создание элемента со свойствами и вложенными элементами
@@ -28,10 +29,15 @@ export function createElement(name, props = {}, ...children) {
 }
 
 export function getTimesClickedText(timesClicked) {
-  if (timesClicked === 2 || timesClicked === 3 || timesClicked === 4) {
-    return `Выделяли ${timesClicked} раза`;
-  } else {
-    return `Выделяли ${timesClicked} раз`;
+  const pluralCategory = pluralRules.select(timesClicked);
+
+  switch (pluralCategory) {
+    case 'one':
+      return `Выделяли ${timesClicked} раз`;
+    case 'few':
+      return `Выделяли ${timesClicked} раза`;
+    default:
+      return `Выделяли ${timesClicked} раз`;
   }
 }
 
