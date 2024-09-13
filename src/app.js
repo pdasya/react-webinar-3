@@ -11,6 +11,11 @@ import { getTimesClickedText } from './utils.js';
 function App({ store }) {
   const list = store.getState().list;
 
+  const handleSelectClick = (itemCode, event) => {
+    event.stopPropagation();
+    store.selectItem(itemCode);
+  };
+
   return (
     <div className="App">
       <div className="App-head">
@@ -20,27 +25,36 @@ function App({ store }) {
         <button onClick={() => store.addItem()}>Добавить</button>
       </div>
       <div className="App-center">
-      <div className="List">
+        <div className="List">
           {list.length !== 0 ? (
             list.map(item => (
               <div key={item.code} className="List-item">
                 <div
                   className={'Item' + (item.selected ? ' Item_selected' : '')}
-                  onClick={() => store.selectItem(item.code)}
+                  onClick={(event) => handleSelectClick(item.code, event)}
                 >
                   <div className="Item-code">{item.code}</div>
                   <div className="Item-title">
                     {item.title}{' '}
-                    {item.timesClicked !== 0 ? `| ${getTimesClickedText(item.timesClicked)}` : ''}
+                    {item.timesClicked !== 0
+                      ? `| ${getTimesClickedText(item.timesClicked)}`
+                      : ''}
                   </div>
                   <div className="Item-actions">
-                    <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
+                    <button
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        store.deleteItem(item.code);
+                      }}
+                    >
+                      Удалить
+                    </button>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p className='List-text'>Нет созданных элементов</p>
+            <p className="List-text">Нет созданных элементов</p>
           )}
         </div>
       </div>
