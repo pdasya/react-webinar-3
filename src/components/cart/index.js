@@ -4,7 +4,7 @@ import './style.css';
 import { getTotalPrice, getTypeOfNumber, plural } from '../../utils';
 import Button from '../button';
 
-function Cart({ cart, setVisible }) {
+function Cart({ cart = [], setVisible = () => {} }) {
   return (
     <div className="Cart">
       <div className="Cart-description">
@@ -23,14 +23,14 @@ function Cart({ cart, setVisible }) {
           <span>пусто</span>
         )}
       </div>
-      <Button action={'Перейти'} onClick={() => setVisible(true)}></Button>
+      <Button action="Перейти" onClick={() => setVisible(true)}></Button>
     </div>
   );
 }
 
 Cart.propTypes = {
-  cart: PropTypes.array.isRequired,
-  setVisible: PropTypes.func.isRequired,
+  cart: PropTypes.array,
+  setVisible: PropTypes.func,
 };
 
 export default React.memo(Cart);
