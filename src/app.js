@@ -34,7 +34,7 @@ function App({ store }) {
 
   return (
     <PageLayout>
-      <Head title="Приложение на чистом JS" />
+      <Head title="Магазин" />
       <Controls onAdd={callbacks.onAddItem} />
       <List
         list={list}

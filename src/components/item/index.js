@@ -23,7 +23,7 @@ function Item(props) {
 
   return (
     <div
-      className={'Item' + (props.item.selected ? ' Item_selected' : '')}
+      className={'Item'}
     >
       <div className="Item-code">{props.item.code}</div>
       <div className="Item-title">
