@@ -27,14 +27,10 @@ function Item(props) {
     >
       <div className="Item-code">{props.item.code}</div>
       <div className="Item-title">
-        {props.item.title}{' '}
-        {count
-          ? ` | Выделяли ${count} ${plural(count, {
-              one: 'раз',
-              few: 'раза',
-              many: 'раз',
-            })}`
-          : ''}
+        {props.item.title}
+      </div>
+      <div className="Item-price">
+        {props.item.price}&nbsp;₽
       </div>
       <Button action={'Добавить'}></Button>
     </div>
