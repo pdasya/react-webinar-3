@@ -54,20 +54,20 @@ export function generateCode2() {
 /**
  * @returns {Number}
  */
- export function getTypeOfNumber(sum) {
+export function getTypeOfNumber(sum) {
   return `${sum}`
-    .split("")
+    .split('')
     .reverse()
     .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
     .reverse()
-    .join("");
+    .join('');
 }
 
 /**
  *Расчет стоимости суммы в корзине
  * @returns {Number}
  */
- export function getTotalPrice(cart) {
+export function getTotalPrice(cart) {
   return cart.reduce(function (acc, obj) {
     return acc + obj.price * obj.count;
   }, 0);

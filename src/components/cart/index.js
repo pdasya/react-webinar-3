@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./style.css";
-import { getTotalPrice, getTypeOfNumber, plural } from "../../utils";
-import Button from '../button'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './style.css';
+import { getTotalPrice, getTypeOfNumber, plural } from '../../utils';
+import Button from '../button';
 
 function Cart({ cart, setVisible }) {
   return (
@@ -11,18 +11,19 @@ function Cart({ cart, setVisible }) {
         <span>В корзине: </span>
         {cart.length !== 0 ? (
           <span>
-            {cart.length}{" "}
+            {cart.length}{' '}
             {`${plural(cart.length, {
-              one: "товар",
-              few: "товарa",
-              many: "товаров",
-            })}`} / {getTypeOfNumber(getTotalPrice(cart))} ₽
+              one: 'товар',
+              few: 'товарa',
+              many: 'товаров',
+            })}`}{' '}
+            / {getTypeOfNumber(getTotalPrice(cart))} ₽
           </span>
         ) : (
           <span>пусто</span>
         )}
       </div>
-        <Button action={'Перейти'} onClick={() => setVisible(true)}></Button>
+      <Button action={'Перейти'} onClick={() => setVisible(true)}></Button>
     </div>
   );
 }

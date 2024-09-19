@@ -34,19 +34,25 @@ function App({ store }) {
       store.addItem();
     }, [store]),
 
-    onAddItemToCart: useCallback((item) => {
-      store.addItemToCart(item);
-    }, [store]),
+    onAddItemToCart: useCallback(
+      item => {
+        store.addItemToCart(item);
+      },
+      [store],
+    ),
 
-    deleteItemFromCart: useCallback((item) => {
-      store.deleteItemFromCart(item);
-    }, [store])
+    deleteItemFromCart: useCallback(
+      item => {
+        store.deleteItemFromCart(item);
+      },
+      [store],
+    ),
   };
 
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <Cart cart={cart} setVisible={setModal}/>
+      <Cart cart={cart} setVisible={setModal} />
       <List
         list={list}
         onDeleteItem={callbacks.onDeleteItem}
@@ -58,7 +64,7 @@ function App({ store }) {
         visible={modal}
         setVisible={setModal}
         onDeleteItemCart={callbacks.deleteItemFromCart}
-    />
+      />
     </PageLayout>
   );
 }

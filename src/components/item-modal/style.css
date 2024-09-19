@@ -20,14 +20,14 @@
 .ItemModal-price {
   font-size: 1.2rem;
   width: 50%;
-  text-align:right;
+  text-align: right;
   white-space: nowrap;
   padding: 20px 10px;
 }
 .ItemModal-count {
   font-size: 1.2rem;
   width: 20%;
-  text-align:right;
+  text-align: right;
   white-space: nowrap;
   padding: 20px 10px;
 }

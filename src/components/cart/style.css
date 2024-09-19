@@ -18,12 +18,12 @@
   justify-content: flex-end;
 }
 
-.Cart-description span:last-child{
+.Cart-description span:last-child {
   padding-left: 8px;
   font-size: 18px;
   font-weight: 700;
 }
 
-.Cart-description span:first-child{
+.Cart-description span:first-child {
   font-size: 18px;
 }

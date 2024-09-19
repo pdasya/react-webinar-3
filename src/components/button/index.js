@@ -5,7 +5,9 @@ import './style.css';
 function Button({ action, onClick }) {
   return (
     <div className="Button-actions">
-      <button onClick={onClick} className='Button'>{action}</button>
+      <button onClick={onClick} className="Button">
+        {action}
+      </button>
     </div>
   );
 }

@@ -53,30 +53,28 @@ class Store {
     });
   }
 
-    /**
+  /**
    * Добавление товара в корзину
    */
-    addItemToCart(item) {
-      const existingItem = this.state.cart.find(cartItem => cartItem.code === item.code);
+  addItemToCart(item) {
+    const existingItem = this.state.cart.find(cartItem => cartItem.code === item.code);
 
-      if (existingItem) {
-        this.setState({
-          ...this.state,
-          cart: this.state.cart.map(cartItem =>
-            cartItem.code === item.code
-              ? { ...cartItem, count: cartItem.count + 1 }
-              : cartItem
-          ),
-        });
-      } else {
-        this.setState({
-          ...this.state,
-          cart: [...this.state.cart, { ...item, count: 1 }],
-        });
-      }
+    if (existingItem) {
+      this.setState({
+        ...this.state,
+        cart: this.state.cart.map(cartItem =>
+          cartItem.code === item.code ? { ...cartItem, count: cartItem.count + 1 } : cartItem,
+        ),
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        cart: [...this.state.cart, { ...item, count: 1 }],
+      });
     }
+  }
 
-    /**
+  /**
    * Удаление товара из корзины
    * @param code
    */
@@ -84,7 +82,7 @@ class Store {
     this.setState({
       ...this.state,
       // Новый список, в котором не будет удаляемой записи
-      cart: this.state.cart.filter((item) => item.code !== code),
+      cart: this.state.cart.filter(item => item.code !== code),
     });
   }
 
