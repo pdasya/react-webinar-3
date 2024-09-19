@@ -1,0 +1,29 @@
+.Cart {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px dashed #ccc;
+  align-items: center;
+}
+
+.Card-button {
+  height: 21px;
+  width: 80px;
+  cursor: pointer;
+}
+
+.Cart-description {
+  align-items: center;
+  margin-right: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Cart-description span:last-child{
+  padding-left: 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.Cart-description span:first-child{
+  font-size: 18px;
+}

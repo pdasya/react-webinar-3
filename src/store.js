@@ -5,7 +5,10 @@ import { generateCode } from './utils';
  */
 class Store {
   constructor(initState = {}) {
-    this.state = initState;
+    this.state = {
+      list: initState.list || [],
+      cart: initState.cart || [],
+    };
     this.listeners = []; // Слушатели изменений состояния
   }
 
@@ -49,6 +52,29 @@ class Store {
       list: [...this.state.list, { code: generateCode(), title: 'Новая запись' }],
     });
   }
+
+    /**
+   * Добавление товара в корзину
+   */
+    addItemToCart(item) {
+      const existingItem = this.state.cart.find(cartItem => cartItem.code === item.code);
+
+      if (existingItem) {
+        this.setState({
+          ...this.state,
+          cart: this.state.cart.map(cartItem =>
+            cartItem.code === item.code
+              ? { ...cartItem, count: cartItem.count + 1 }
+              : cartItem
+          ),
+        });
+      } else {
+        this.setState({
+          ...this.state,
+          cart: [...this.state.cart, { ...item, count: 1 }],
+        });
+      }
+    }
 
   /**
    * Удаление записи по коду

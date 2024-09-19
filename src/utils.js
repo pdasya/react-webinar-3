@@ -50,3 +50,25 @@ export const generateCode1 = (function (start = 0) {
 export function generateCode2() {
   return generateCode2.value ? ++generateCode2.value : (generateCode2.value = 1);
 }
+
+/**
+ * @returns {Number}
+ */
+ export function getTypeOfNumber(sum) {
+  return `${sum}`
+    .split("")
+    .reverse()
+    .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
+    .reverse()
+    .join("");
+}
+
+/**
+ *Расчет стоимости суммы в корзине
+ * @returns {Number}
+ */
+ export function getTotalPrice(cart) {
+  return cart.reduce(function (acc, obj) {
+    return acc + obj.price * obj.count;
+  }, 0);
+}

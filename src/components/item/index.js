@@ -8,18 +8,9 @@ function Item(props) {
   // Счётчик выделений
   const [count, setCount] = useState(0);
 
-  // const callbacks = {
-  //   onClick: () => {
-  //     props.onSelect(props.item.code);
-  //     if (!props.item.selected) {
-  //       setCount(count + 1);
-  //     }
-  //   },
-  //   onDelete: e => {
-  //     e.stopPropagation();
-  //     props.onDelete(props.item.code);
-  //   },
-  // };
+  const handleAddToCart = () => {
+    props.onAddToCart(props.item);
+  };
 
   return (
     <div
@@ -32,7 +23,7 @@ function Item(props) {
       <div className="Item-price">
         {props.item.price}&nbsp;₽
       </div>
-      <Button action={'Добавить'}></Button>
+      <Button action={'Добавить'} onClick={handleAddToCart}></Button>
     </div>
   );
 }
@@ -44,13 +35,11 @@ Item.propTypes = {
     selected: PropTypes.bool,
     count: PropTypes.number,
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
+  onAddToCart: PropTypes.func.isRequired,
 };
 
 Item.defaultProps = {
-  onDelete: () => {},
-  onSelect: () => {},
+  onAddToCart: () => {},
 };
 
 export default React.memo(Item);
