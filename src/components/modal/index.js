@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./style.css";
+import ListModal from "../list-modal";
+import Button from "../button";
 
-function Modal({ cart, visible, setVisible}) {
+function Modal({ cart, visible, setVisible, onDeleteItemCart = () => {} }) {
   return (
     <div className={visible ? `Modal active` : "Modal"}>
       <div className="Modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="Modal-head">
           <h1>Корзина</h1>
-          <button onClick={() => setVisible(false)}>Закрыть</button>
+          <Button action='Закрыть' onClick={() => setVisible(false)}/>
         </div>
+        <ListModal cart={cart} onDeleteItem={onDeleteItemCart} />
       </div>
     </div>
   );

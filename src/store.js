@@ -76,6 +76,18 @@ class Store {
       }
     }
 
+    /**
+   * Удаление товара из корзины
+   * @param code
+   */
+  deleteItemFromCart(code) {
+    this.setState({
+      ...this.state,
+      // Новый список, в котором не будет удаляемой записи
+      cart: this.state.cart.filter((item) => item.code !== code),
+    });
+  }
+
   /**
    * Удаление записи по коду
    * @param code

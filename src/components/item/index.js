@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { plural } from '../../utils';
+import { getTypeOfNumber } from '../../utils';
 import './style.css';
 import Button from '../button';
 
 function Item(props) {
-  // Счётчик выделений
-  const [count, setCount] = useState(0);
 
   const handleAddToCart = () => {
     props.onAddToCart(props.item);
@@ -21,7 +19,7 @@ function Item(props) {
         {props.item.title}
       </div>
       <div className="Item-price">
-        {props.item.price}&nbsp;₽
+        {getTypeOfNumber(props.item.price)}&nbsp;₽
       </div>
       <Button action={'Добавить'} onClick={handleAddToCart}></Button>
     </div>
