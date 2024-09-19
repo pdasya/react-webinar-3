@@ -2,28 +2,28 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { plural } from '../../utils';
 import './style.css';
+import Button from '../button';
 
 function Item(props) {
   // Счётчик выделений
   const [count, setCount] = useState(0);
 
-  const callbacks = {
-    onClick: () => {
-      props.onSelect(props.item.code);
-      if (!props.item.selected) {
-        setCount(count + 1);
-      }
-    },
-    onDelete: e => {
-      e.stopPropagation();
-      props.onDelete(props.item.code);
-    },
-  };
+  // const callbacks = {
+  //   onClick: () => {
+  //     props.onSelect(props.item.code);
+  //     if (!props.item.selected) {
+  //       setCount(count + 1);
+  //     }
+  //   },
+  //   onDelete: e => {
+  //     e.stopPropagation();
+  //     props.onDelete(props.item.code);
+  //   },
+  // };
 
   return (
     <div
       className={'Item' + (props.item.selected ? ' Item_selected' : '')}
-      onClick={callbacks.onClick}
     >
       <div className="Item-code">{props.item.code}</div>
       <div className="Item-title">
@@ -36,9 +36,7 @@ function Item(props) {
             })}`
           : ''}
       </div>
-      <div className="Item-actions">
-        <button onClick={callbacks.onDelete}>Удалить</button>
-      </div>
+      <Button action={'Добавить'}></Button>
     </div>
   );
 }
