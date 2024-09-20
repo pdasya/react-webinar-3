@@ -4,11 +4,6 @@
   transition: background-color 1s;
 }
 
-.Item_selected {
-  background: #75aaf1;
-  color: #fff;
-}
-
 .Item-code {
   padding: 20px 10px 20px 20px;
 }
@@ -37,11 +32,6 @@
   transition: background-color 1s;
 }
 
-.ItemModal_selected {
-  background: #75aaf1;
-  color: #fff;
-}
-
 .ItemModal-code {
   padding: 20px 20px 20px 20px;
 }
@@ -50,6 +40,7 @@
   width: 100%;
   padding: 20px 10px;
 }
+
 .ItemModal-price {
   font-size: 1.2rem;
   width: 50%;
@@ -57,6 +48,7 @@
   white-space: nowrap;
   padding: 20px 10px;
 }
+
 .ItemModal-count {
   font-size: 1.2rem;
   width: 20%;
@@ -69,10 +61,4 @@
   display: flex;
   justify-content: flex-end;
   padding: 20px 20px 20px 10px;
-}
-
-.ItemModal-actions button {
-  height: 21px;
-  width: 76px;
-  cursor: pointer;
 }

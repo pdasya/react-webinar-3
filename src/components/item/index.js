@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getTypeOfNumber } from '../../utils';
 import './style.css';
 import Button from '../button';
+import { cn as bem } from '@bem-react/classname';
 
 function Item({
   item,
@@ -18,12 +19,14 @@ function Item({
     onAction(data);
   };
 
+  const cn = bem(`${className}`);
+
   return (
-    <div className={`${className}`}>
-      <div className={`${className}-code`}>{item.code}</div>
-      <div className={`${className}-title`}>{item.title}</div>
-      <div className={`${className}-price`}>{getTypeOfNumber(item.price)}&nbsp;₽</div>
-      {showCount && <div className={`${className}-count`}>{item.count} шт.</div>}
+    <div className={cn()}>
+      <div className={cn('code')}>{item.code}</div>
+      <div className={cn('title')}>{item.title}</div>
+      <div className={cn('price')}>{getTypeOfNumber(item.price)}&nbsp;₽</div>
+      {showCount && <div className={cn('count')}>{item.count} шт.</div>}
       <Button action={actionLabel} onClick={handleAction} />
     </div>
   );

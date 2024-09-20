@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import './style.css';
 import { getTotalPrice, getTypeOfNumber, plural } from '../../utils';
 import Button from '../button';
+import { cn as bem } from '@bem-react/classname';
 
 function Cart({ cart = [], setVisible = () => {} }) {
+  const cn = bem('Cart');
+
   return (
-    <div className="Cart">
-      <div className="Cart-description">
+    <div className={cn()}>
+      <div className={cn('description')}>
         <span>В корзине: </span>
         {cart.length !== 0 ? (
           <span>

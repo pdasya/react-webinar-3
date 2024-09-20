@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Item from '../item';
 import './style.css';
+import { cn as bem } from '@bem-react/classname';
 
 function List({
   items,
@@ -15,11 +16,13 @@ function List({
   getTotalPrice = () => 0,
   actionDataType = 'item',
 }) {
+  const cn = bem(`${className}`);
+
   return (
-    <div className={`${className}`}>
+    <div className={cn()}>
       {items.length ? (
         items.map(item => (
-          <div key={item.code} className={`${className}-item`}>
+          <div key={item.code} className={cn('item')}>
             <Item
               item={item}
               actionLabel={actionLabel}
@@ -31,10 +34,10 @@ function List({
           </div>
         ))
       ) : (
-        <div className={`${className}-empty`}>{emptyMessage}</div>
+        <div className={cn('empty')}>{emptyMessage}</div>
       )}
       {showTotal && (
-        <div className={`${className}-result`}>
+        <div className={cn('result')}>
           <span>Итого</span>
           <span>{getTotalPrice(items)} ₽</span>
         </div>

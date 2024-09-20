@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
+import { cn as bem } from '@bem-react/classname';
 
 function Button({ action, onClick }) {
+  const cn = bem('Button');
+
   return (
-    <div className="Button-actions">
-      <button onClick={onClick} className="Button">
+    <div className={cn()}>
+      <button onClick={onClick} className={cn('actions')}>
         {action}
       </button>
     </div>

@@ -5,12 +5,15 @@ import List from '../list';
 import Button from '../button';
 import Head from '../head';
 import { getTypeOfNumber, getTotalPrice } from '../../utils';
+import { cn as bem } from '@bem-react/classname';
 
 function Modal({ cart, visible, setVisible, onDeleteItemCart = () => {} }) {
+  const cn = bem('Modal');
+
   return (
-    <div className={visible ? `Modal active` : 'Modal'}>
-      <div className="Modal-content" onClick={e => e.stopPropagation()}>
-        <div className="Modal-head">
+    <div className={visible ? `Modal active` : cn()}>
+      <div className={cn('content')} onClick={e => e.stopPropagation()}>
+        <div className={cn()}>
           <Head title="Корзина" />
           <Button action="Закрыть" onClick={() => setVisible(false)} />
         </div>
