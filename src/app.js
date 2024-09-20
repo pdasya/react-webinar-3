@@ -41,9 +41,9 @@ function App({ store }) {
       [store],
     ),
 
-    deleteItemFromCart: useCallback(
-      item => {
-        store.deleteItemFromCart(item);
+    onDeleteItemFromCart: useCallback(
+      code => {
+        store.deleteItemFromCart(code);
       },
       [store],
     ),
@@ -54,16 +54,19 @@ function App({ store }) {
       <Head title="Магазин" />
       <Cart cart={cart} setVisible={setModal} />
       <List
-        list={list}
-        onDeleteItem={callbacks.onDeleteItem}
-        onSelectItem={callbacks.onSelectItem}
-        onAddToCart={callbacks.onAddItemToCart}
+        items={list}
+        actionLabel="Добавить"
+        onAction={callbacks.onAddItemToCart}
+        className="List"
+        showCount={false}
+        emptyMessage="Нет доступных товаров"
+        showTotal={false}
       />
       <Modal
         cart={cart}
         visible={modal}
         setVisible={setModal}
-        onDeleteItemCart={callbacks.deleteItemFromCart}
+        onDeleteItemCart={callbacks.onDeleteItemFromCart}
       />
     </PageLayout>
   );

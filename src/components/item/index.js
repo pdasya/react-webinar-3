@@ -4,17 +4,27 @@ import { getTypeOfNumber } from '../../utils';
 import './style.css';
 import Button from '../button';
 
-function Item({ item, onAddToCart = () => {} }) {
-  const handleAddToCart = () => {
-    onAddToCart(item);
+function Item({
+  item,
+  actionLabel = 'Добавить',
+  onAction = () => {},
+  showCount = false,
+  className = 'Item',
+  actionDataType = 'item',
+}) {
+  const handleAction = e => {
+    e.stopPropagation();
+    const data = actionDataType === 'code' ? item.code : item;
+    onAction(data);
   };
 
   return (
-    <div className={'Item'}>
-      <div className="Item-code">{item.code}</div>
-      <div className="Item-title">{item.title}</div>
-      <div className="Item-price">{getTypeOfNumber(item.price)}&nbsp;₽</div>
-      <Button action="Добавить" onClick={handleAddToCart}></Button>
+    <div className={`${className}`}>
+      <div className={`${className}-code`}>{item.code}</div>
+      <div className={`${className}-title`}>{item.title}</div>
+      <div className={`${className}-price`}>{getTypeOfNumber(item.price)}&nbsp;₽</div>
+      {showCount && <div className={`${className}-count`}>{item.count} шт.</div>}
+      <Button action={actionLabel} onClick={handleAction} />
     </div>
   );
 }
@@ -23,11 +33,14 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number.isRequired,
     title: PropTypes.string,
-    selected: PropTypes.bool,
-    count: PropTypes.number,
     price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    count: PropTypes.number,
   }).isRequired,
-  onAddToCart: PropTypes.func,
+  actionLabel: PropTypes.string,
+  onAction: PropTypes.func,
+  showCount: PropTypes.bool,
+  className: PropTypes.string,
+  actionDataType: PropTypes.oneOf(['item', 'code']),
 };
 
 export default React.memo(Item);
