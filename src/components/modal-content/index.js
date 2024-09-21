@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from '../list';
-import Button from '../button';
 import Head from '../head';
-import { getTypeOfNumber, getTotalPrice } from '../../utils';
+import Button from '../button';
+import ItemModal from '../item-modal';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
@@ -18,14 +18,13 @@ function ModalContent({ cart, onDeleteItemCart, setVisible, totalPrice }) {
       </div>
       <List
         items={cart}
-        actionLabel="Удалить"
+        ItemComponent={ItemModal}
         onAction={onDeleteItemCart}
-        showCount={true}
+        actionLabel="Удалить"
         className="ListModal"
-        itemClassName="ItemModal"
-        emptyMessage="Товары еще не были добавлены в корзину"
         showTotal={true}
         totalPrice={totalPrice}
+        showCount={true}
       />
     </div>
   );

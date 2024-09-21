@@ -5,6 +5,9 @@ import Head from './components/head';
 import PageLayout from './components/page-layout';
 import ModalLayout from './components/modal-layout';
 import ModalContent from './components/modal-content';
+import Item from './components/item';
+import ItemModal from './components/item-modal';
+import Button from './components/button';
 
 /**
  * Приложение
@@ -55,18 +58,17 @@ function App({ store }) {
       <Cart totalItems={totalItems} totalPrice={totalPrice} setVisible={setModal} />
       <List
         items={list}
-        actionLabel="Добавить"
+        ItemComponent={Item}
         onAction={callbacks.onAddItemToCart}
+        actionLabel="Добавить"
         className="List"
-        showCount={false}
-        emptyMessage="Нет доступных товаров"
         showTotal={false}
       />
       <ModalLayout visible={modal} setVisible={setModal}>
         <ModalContent
           cart={cart}
-          setVisible={setModal}
           onDeleteItemCart={callbacks.onDeleteItemFromCart}
+          setVisible={setModal}
           totalPrice={totalPrice}
         />
       </ModalLayout>

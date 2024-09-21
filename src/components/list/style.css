@@ -7,10 +7,12 @@
   border-top: 1px dashed #ccc;
 }
 
+.List-item,
 .ListModal-item {
   border-bottom: 1px dashed #ccc;
 }
 
+.List-result,
 .ListModal-result {
   font-size: 1.2rem;
   display: flex;
@@ -20,6 +22,7 @@
   font-weight: 700;
 }
 
+.List-empty,
 .ListModal-empty {
   border-bottom: 1px dashed #ccc;
   display: flex;

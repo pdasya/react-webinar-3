@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getTypeOfNumber } from '../../utils';
 import Button from '../button';
 import { cn as bem } from '@bem-react/classname';
+import './style.css';
 
 function Item({ item, onAction, actionLabel = 'Добавить' }) {
   const cn = bem('Item');

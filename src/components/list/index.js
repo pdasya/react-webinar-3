@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Item from '../item';
 import './style.css';
 import { cn as bem } from '@bem-react/classname';
 
@@ -14,6 +13,7 @@ function List({
   emptyMessage = 'Список пуст',
   showTotal = false,
   totalPrice = 0,
+  ItemComponent,
 }) {
   const cn = bem(`${className}`);
 
@@ -22,7 +22,7 @@ function List({
       {items.length ? (
         items.map(item => (
           <div key={item.code} className={cn('item')}>
-            <Item
+            <ItemComponent
               item={item}
               actionLabel={actionLabel}
               onAction={onAction}
@@ -58,6 +58,7 @@ List.propTypes = {
   emptyMessage: PropTypes.string,
   showTotal: PropTypes.bool,
   totalPrice: PropTypes.number,
+  ItemComponent: PropTypes.elementType.isRequired, // Пропс для компонента, который будет рендериться
 };
 
 export default React.memo(List);
