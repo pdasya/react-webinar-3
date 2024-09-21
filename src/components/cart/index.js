@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
-import { getTotalPrice, getTypeOfNumber, plural } from '../../utils';
 import Button from '../button';
 import { cn as bem } from '@bem-react/classname';
+import { plural } from '../../utils';
 
-function Cart({ cart = [], setVisible = () => {} }) {
+function Cart({ totalItems = 0, totalPrice = 0, setVisible = () => {} }) {
   const cn = bem('Cart');
 
   return (
     <div className={cn()}>
       <div className={cn('description')}>
         <span>В корзине: </span>
-        {cart.length !== 0 ? (
+        {totalItems !== 0 ? (
           <span>
-            {cart.length}{' '}
-            {`${plural(cart.length, {
+            {totalItems}{' '}
+            {`${plural(totalItems, {
               one: 'товар',
-              few: 'товарa',
+              few: 'товара',
               many: 'товаров',
             })}`}{' '}
-            / {getTypeOfNumber(getTotalPrice(cart))} ₽
+            / {totalPrice} ₽
           </span>
         ) : (
           <span>пусто</span>
@@ -32,7 +32,8 @@ function Cart({ cart = [], setVisible = () => {} }) {
 }
 
 Cart.propTypes = {
-  cart: PropTypes.array,
+  totalItems: PropTypes.number,
+  totalPrice: PropTypes.number,
   setVisible: PropTypes.func,
 };
 

@@ -12,8 +12,7 @@ import ModalContent from './components/modal-content';
  * @returns {React.ReactElement}
  */
 function App({ store }) {
-  const list = store.getState().list;
-  const cart = store.getState().cart;
+  const { list, cart, totalItems, totalPrice } = store.getState();
   const [modal, setModal] = useState(false);
 
   const callbacks = {
@@ -53,7 +52,7 @@ function App({ store }) {
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <Cart cart={cart} setVisible={setModal} />
+      <Cart totalItems={totalItems} totalPrice={totalPrice} setVisible={setModal} />
       <List
         items={list}
         actionLabel="Добавить"

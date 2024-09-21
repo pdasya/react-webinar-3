@@ -8,6 +8,8 @@ class Store {
     this.state = {
       list: initState.list || [],
       cart: initState.cart || [],
+      totalItems: 0,
+      totalPrice: 0,
     };
     this.listeners = []; // Слушатели изменений состояния
   }
@@ -41,6 +43,20 @@ class Store {
     this.state = newState;
     // Вызываем всех слушателей
     for (const listener of this.listeners) listener();
+  }
+
+  /**
+   * Подсчет общего количества товаров и общей суммы
+   */
+  updateCartTotals() {
+    const totalItems = this.state.cart.length;
+    const totalPrice = this.state.cart.reduce((sum, item) => sum + item.count * item.price, 0);
+
+    this.setState({
+      ...this.state,
+      totalItems,
+      totalPrice,
+    });
   }
 
   /**
@@ -79,6 +95,8 @@ class Store {
         cart: [...this.state.cart, { ...item, count: 1 }],
       });
     }
+
+    this.updateCartTotals();
   }
 
   /**
@@ -91,6 +109,8 @@ class Store {
       // Новый список, в котором не будет удаляемой записи
       cart: this.state.cart.filter(item => item.code !== code),
     });
+
+    this.updateCartTotals();
   }
 
   /**
