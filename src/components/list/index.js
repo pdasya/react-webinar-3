@@ -14,7 +14,6 @@ function List({
   emptyMessage = 'Список пуст',
   showTotal = false,
   getTotalPrice = () => 0,
-  actionDataType = 'item',
 }) {
   const cn = bem(`${className}`);
 
@@ -29,7 +28,6 @@ function List({
               onAction={onAction}
               showCount={showCount}
               className={itemClassName}
-              actionDataType={actionDataType}
             />
           </div>
         ))
@@ -60,7 +58,6 @@ List.propTypes = {
   emptyMessage: PropTypes.string,
   showTotal: PropTypes.bool,
   getTotalPrice: PropTypes.func,
-  actionDataType: PropTypes.oneOf(['item', 'code']),
 };
 
 export default React.memo(List);

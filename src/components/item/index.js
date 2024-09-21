@@ -11,12 +11,10 @@ function Item({
   onAction = () => {},
   showCount = false,
   className = 'Item',
-  actionDataType = 'item',
 }) {
   const handleAction = e => {
     e.stopPropagation();
-    const data = actionDataType === 'code' ? item.code : item;
-    onAction(data);
+    onAction(item.code);
   };
 
   const cn = bem(`${className}`);
@@ -43,7 +41,6 @@ Item.propTypes = {
   onAction: PropTypes.func,
   showCount: PropTypes.bool,
   className: PropTypes.string,
-  actionDataType: PropTypes.oneOf(['item', 'code']),
 };
 
 export default React.memo(Item);

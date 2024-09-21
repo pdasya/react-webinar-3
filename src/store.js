@@ -55,15 +55,22 @@ class Store {
 
   /**
    * Добавление товара в корзину
+   * @param code
    */
-  addItemToCart(item) {
-    const existingItem = this.state.cart.find(cartItem => cartItem.code === item.code);
+  addItemToCart(code) {
+    const item = this.state.list.find(item => item.code === code);
+    if (!item) {
+      console.error(`Товар с кодом ${code} не найден.`);
+      return;
+    }
+
+    const existingItem = this.state.cart.find(cartItem => cartItem.code === code);
 
     if (existingItem) {
       this.setState({
         ...this.state,
         cart: this.state.cart.map(cartItem =>
-          cartItem.code === item.code ? { ...cartItem, count: cartItem.count + 1 } : cartItem,
+          cartItem.code === code ? { ...cartItem, count: cartItem.count + 1 } : cartItem,
         ),
       });
     } else {

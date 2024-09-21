@@ -35,8 +35,8 @@ function App({ store }) {
     }, [store]),
 
     onAddItemToCart: useCallback(
-      item => {
-        store.addItemToCart(item);
+      code => {
+        store.addItemToCart(code);
       },
       [store],
     ),
