@@ -1,0 +1,17 @@
+.ModalContent {
+  border-radius: 10px;
+  padding: 2px;
+  background: white;
+  min-width: 960px;
+  min-height: 400px;
+}
+
+.ModalContent-head {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  background: #f5f5f5;
+  padding: 20px 30px 20px 20px;
+  margin-bottom: 72px;
+}

@@ -3,7 +3,8 @@ import List from './components/list';
 import Cart from './components/cart';
 import Head from './components/head';
 import PageLayout from './components/page-layout';
-import Modal from './components/modal';
+import ModalLayout from './components/modal-layout';
+import ModalContent from './components/modal-content';
 
 /**
  * Приложение
@@ -62,12 +63,13 @@ function App({ store }) {
         emptyMessage="Нет доступных товаров"
         showTotal={false}
       />
-      <Modal
-        cart={cart}
-        visible={modal}
-        setVisible={setModal}
-        onDeleteItemCart={callbacks.onDeleteItemFromCart}
-      />
+      <ModalLayout visible={modal} setVisible={setModal}>
+        <ModalContent
+          cart={cart}
+          setVisible={setModal}
+          onDeleteItemCart={callbacks.onDeleteItemFromCart}
+        />
+      </ModalLayout>
     </PageLayout>
   );
 }
