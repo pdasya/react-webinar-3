@@ -6,6 +6,7 @@
   left: 0;
   display: none;
   background: rgb(0, 0, 0, 0.5);
+  overflow-y: auto;
 }
 
 .Modal-head {
@@ -36,5 +37,11 @@
   .Modal__content {
     width: 90vw;
     padding: 15px;
+  }
+}
+
+@media (max-height: 420px) {
+  .Modal__content {
+    height: 90vh;
   }
 }
