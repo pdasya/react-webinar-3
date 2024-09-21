@@ -62,13 +62,3 @@ export function getTypeOfNumber(sum) {
     .reverse()
     .join('');
 }
-
-/**
- *Расчет стоимости суммы в корзине
- * @returns {Number}
- */
-export function getTotalPrice(cart) {
-  return cart.reduce(function (acc, obj) {
-    return acc + obj.price * obj.count;
-  }, 0);
-}

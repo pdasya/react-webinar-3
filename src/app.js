@@ -67,6 +67,7 @@ function App({ store }) {
           cart={cart}
           setVisible={setModal}
           onDeleteItemCart={callbacks.onDeleteItemFromCart}
+          totalPrice={totalPrice}
         />
       </ModalLayout>
     </PageLayout>

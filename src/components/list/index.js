@@ -13,7 +13,7 @@ function List({
   itemClassName = 'Item',
   emptyMessage = 'Список пуст',
   showTotal = false,
-  getTotalPrice = () => 0,
+  totalPrice = 0,
 }) {
   const cn = bem(`${className}`);
 
@@ -37,7 +37,7 @@ function List({
       {showTotal && (
         <div className={cn('result')}>
           <span>Итого</span>
-          <span>{getTotalPrice(items)} ₽</span>
+          <span>{totalPrice} ₽</span>
         </div>
       )}
     </div>
@@ -57,7 +57,7 @@ List.propTypes = {
   itemClassName: PropTypes.string,
   emptyMessage: PropTypes.string,
   showTotal: PropTypes.bool,
-  getTotalPrice: PropTypes.func,
+  totalPrice: PropTypes.number,
 };
 
 export default React.memo(List);

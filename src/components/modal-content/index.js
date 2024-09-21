@@ -7,7 +7,7 @@ import { getTypeOfNumber, getTotalPrice } from '../../utils';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
-function ModalContent({ cart, onDeleteItemCart, setVisible }) {
+function ModalContent({ cart, onDeleteItemCart, setVisible, totalPrice }) {
   const cn = bem('ModalContent');
 
   return (
@@ -25,7 +25,7 @@ function ModalContent({ cart, onDeleteItemCart, setVisible }) {
         itemClassName="ItemModal"
         emptyMessage="Товары еще не были добавлены в корзину"
         showTotal={true}
-        getTotalPrice={items => getTypeOfNumber(getTotalPrice(items))}
+        totalPrice={totalPrice}
       />
     </div>
   );
@@ -35,6 +35,7 @@ ModalContent.propTypes = {
   cart: PropTypes.array.isRequired,
   onDeleteItemCart: PropTypes.func.isRequired,
   setVisible: PropTypes.func.isRequired,
+  totalPrice: PropTypes.number,
 };
 
 export default React.memo(ModalContent);
