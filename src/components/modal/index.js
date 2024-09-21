@@ -13,7 +13,7 @@ function Modal({ cart, visible, setVisible, onDeleteItemCart = () => {} }) {
   return (
     <div className={visible ? `Modal active` : cn()}>
       <div className={cn('content')} onClick={e => e.stopPropagation()}>
-        <div className={cn()}>
+        <div className={cn('head')}>
           <Head title="Корзина" />
           <Button action="Закрыть" onClick={() => setVisible(false)} />
         </div>

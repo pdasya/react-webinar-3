@@ -31,3 +31,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 1020px) {
+  .Modal__content {
+    width: 90vw;
+    padding: 15px;
+  }
+}
