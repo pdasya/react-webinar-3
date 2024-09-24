@@ -6,13 +6,20 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
+import Pagination from '../../components/pagination';
 
 function Main() {
   const store = useStore();
 
+  const pagination = useSelector(state => ({
+    currentPage: state.pagination.currentPage,
+    totalPages: state.pagination.totalPages,
+    limit: state.pagination.limit,
+  }));
+
   useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
+    store.actions.pagination.loadCurrentPageData(pagination.currentPage);
+  }, [pagination.currentPage, store]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -25,6 +32,13 @@ function Main() {
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
+    // Изменение страницы
+    changePage: useCallback(
+      page => {
+        store.actions.pagination.setCurrentPage(page);
+      },
+      [store],
+    ),
   };
 
   const renders = {
@@ -41,6 +55,11 @@ function Main() {
       <Head title="Магазин" />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        onPageChange={callbacks.changePage}
+      />
     </PageLayout>
   );
 }

@@ -24,6 +24,16 @@ class Catalog extends StoreModule {
       'Загружены товары из АПИ',
     );
   }
+
+  setList(items) {
+    this.setState(
+      {
+        ...this.getState(),
+        list: items,
+      },
+      'Обновлен список товаров',
+    );
+  }
 }
 
 export default Catalog;
