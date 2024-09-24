@@ -19,7 +19,7 @@ function Main() {
 
   useEffect(() => {
     store.actions.pagination.loadCurrentPageData(pagination.currentPage);
-  }, [pagination.currentPage, store]);
+  }, [store]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,
