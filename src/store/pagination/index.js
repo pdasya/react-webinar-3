@@ -41,13 +41,17 @@ class Pagination extends StoreModule {
     const skip = (page - 1) * limit;
 
     try {
-      const response = await fetch(`/api/v1/articles?limit=${limit}&skip=${skip}`);
-      const data = await response.json();
+      const totalResponse = await fetch(
+        `/api/v1/articles?limit=${limit}&skip=${skip}&fields=items(_id, title, price),count`,
+      );
+      const totalData = await totalResponse.json();
 
-      this.store.actions.catalog.setList(data.result.items);
-      this.setTotalItems(545);
+      const totalItems = totalData.result.count;
 
-      return data;
+      this.store.actions.catalog.setList(totalData.result.items);
+      this.setTotalItems(totalItems);
+
+      return totalData;
     } catch (error) {
       console.error('Ошибка при загрузке данных страницы:', error);
     }
