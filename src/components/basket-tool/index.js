@@ -4,25 +4,28 @@ import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
 import './style.css';
 import { Link } from 'react-router-dom';
+import useLocale from '../../locale/use-locale';
 
 function BasketTool({ sum, amount, onOpen }) {
   const cn = bem('BasketTool');
+  const { translate } = useLocale();
+
   return (
     <div className={cn()}>
       <span className={cn('content')}>
-        <Link to="/">Главная</Link>
+        <Link to="/">{translate('main-page')}</Link>
       </span>
-      <span className={cn('label')}>В корзине:</span>
+      <span className={cn('label')}>{translate('in-cart')}</span>
       <span className={cn('total')}>
         {amount
           ? `${amount} ${plural(amount, {
-              one: 'товар',
-              few: 'товара',
-              many: 'товаров',
+              one: translate('one-product-label'),
+              few: translate('few-products-label'),
+              many: translate('many-products-label'),
             })} / ${numberFormat(sum)} ₽`
-          : `пусто`}
+          : translate('empty-label')}
       </span>
-      <button onClick={onOpen}>Перейти</button>
+      <button onClick={onOpen}>{translate('go-label')}</button>
     </div>
   );
 }

@@ -2,9 +2,11 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
+import useLocale from '../../locale/use-locale';
 
 function ItemDetails({ _id, description, vendor, category, year, price, onAdd }) {
   const cn = bem('ItemDetails');
+  const { translate } = useLocale();
 
   const callbacks = {
     onAdd: e => onAdd?.(_id),
@@ -14,19 +16,19 @@ function ItemDetails({ _id, description, vendor, category, year, price, onAdd })
     <div className={cn()}>
       <div className={cn('description')}>{description}</div>
       <div className={cn('vendor')}>
-        Страна производитель: <strong>{vendor}</strong>
+        {translate('vendor-label')}: <strong>{vendor}</strong>
       </div>
       <div className={cn('category')}>
-        Категория: <strong>{category}</strong>
+        {translate('category-label')}: <strong>{category}</strong>
       </div>
       <div className={cn('year')}>
-        Год выпуска: <strong>{year}</strong>
+        {translate('year-label')}: <strong>{year}</strong>
       </div>
       <div className={cn('price')}>
-        Цена: <strong>{price} ₽</strong>
+        {translate('price-label')}: <strong>{price} ₽</strong>
       </div>
       <div className={cn('action')}>
-        <button onClick={callbacks.onAdd}>Добавить</button>
+        <button onClick={callbacks.onAdd}>{translate('add-label')}</button>
       </div>
     </div>
   );

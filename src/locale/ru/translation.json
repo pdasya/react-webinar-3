@@ -1,0 +1,22 @@
+{
+  "russian": "Русский",
+  "english": "English",
+  "main-title": "Магазин",
+  "basket-title": "Корзина",
+  "main-page": "Главная",
+  "empty-label": "пусто",
+  "in-cart": "В корзине:",
+  "one-product-label": "товар",
+  "few-products-label": "товара",
+  "many-products-label": "товаров",
+  "go-label": "Перейти",
+  "total-label": "Итого:",
+  "add-label": "Добавить",
+  "close-label": "Закрыть",
+  "delete-label": "Удалить",
+  "pieces-label": "шт",
+  "vendor-label": "Страна производитель",
+  "category-label": "Категория",
+  "year-label": "Год выпуска",
+  "price-label": "Цена"
+}

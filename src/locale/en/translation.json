@@ -1,0 +1,22 @@
+{
+  "russian": "Русский",
+  "english": "English",
+  "main-title": "Shop",
+  "basket-title": "Basket",
+  "main-page": "Main",
+  "empty-label": "empty",
+  "in-cart": "In the basket:",
+  "one-product-label": "product",
+  "few-products-label": "products",
+  "many-products-label": "products",
+  "go-label": "To the basket",
+  "total-label": "Total:",
+  "add-label": "Add",
+  "close-label": "Close",
+  "delete-label": "Delete",
+  "pieces-label": "pc",
+  "vendor-label": "Manufacturing country",
+  "category-label": "Category",
+  "year-label": "Year of release",
+  "price-label": "Price"
+}

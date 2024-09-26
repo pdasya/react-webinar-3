@@ -5,9 +5,11 @@ import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
 import './style.css';
 import { Link } from 'react-router-dom';
+import useLocale from '../../locale/use-locale';
 
 function ItemBasket(props) {
   const cn = bem('ItemBasket');
+  const { translate } = useLocale();
 
   const callbacks = {
     onRemove: e => props.onRemove(props.item._id),
@@ -22,9 +24,11 @@ function ItemBasket(props) {
       </div>
       <div className={cn('right')}>
         <div className={cn('cell')}>{numberFormat(props.item.price)} ₽</div>
-        <div className={cn('cell')}>{numberFormat(props.item.amount || 0)} шт</div>
         <div className={cn('cell')}>
-          <button onClick={callbacks.onRemove}>Удалить</button>
+          {numberFormat(props.item.amount || 0)} {translate('pieces-label')}
+        </div>
+        <div className={cn('cell')}>
+          <button onClick={callbacks.onRemove}>{translate('delete-label')}</button>
         </div>
       </div>
     </div>
