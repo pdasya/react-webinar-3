@@ -1,0 +1,33 @@
+.ItemDetails {
+  padding: 15px;
+}
+
+.ItemDetails-description {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.ItemDetails-vendor {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.ItemDetails-category {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.ItemDetails-year {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.ItemDetails-price {
+  font-size: 24px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.ItemDetails-action {
+  padding: 10px 20px;
+}
