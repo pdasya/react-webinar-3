@@ -9,6 +9,10 @@
 .BasketTool-label {
 }
 
+.BasketTool-content {
+  flex-grow: 1;
+}
+
 .BasketTool-total {
   font-weight: bold;
   margin: 0 20px;
