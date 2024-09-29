@@ -1,27 +1,22 @@
-import { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 import { cn as bem } from '@bem-react/classname';
-import LanguageSwitcher from '../language-switcher';
 
-function Head({ title, currentLanguage, setLanguage, languages, labels }) {
-  const cn = bem('Head');
+function LanguageSwitcher({ currentLanguage, setLanguage, languages, labels }) {
+  const cn = bem('LanguageSwitcher');
 
   return (
     <div className={cn()}>
-      <h1>{title}</h1>
-      <LanguageSwitcher
-        currentLanguage={currentLanguage}
-        setLanguage={setLanguage}
-        languages={languages}
-        labels={labels}
-      />
+      <select onChange={e => setLanguage(e.target.value)} defaultValue={currentLanguage}>
+        <option value={languages.ru}>{labels.russian}</option>
+        <option value={languages.en}>{labels.english}</option>
+      </select>
     </div>
   );
 }
 
-Head.propTypes = {
-  title: PropTypes.node.isRequired,
+LanguageSwitcher.propTypes = {
   currentLanguage: PropTypes.string.isRequired,
   setLanguage: PropTypes.func.isRequired,
   languages: PropTypes.shape({
@@ -34,4 +29,4 @@ Head.propTypes = {
   }).isRequired,
 };
 
-export default memo(Head);
+export default LanguageSwitcher;
