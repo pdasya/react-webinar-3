@@ -1,21 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import useLocale from '../../locale/use-locale';
 import './style.css';
 
-function MainNavigation() {
-  const { translate } = useLocale();
-
+function MainNavigation({ mainLabel }) {
   return (
     <Link to="/" className="MainNavigation">
-      {translate('main-page')}
+      {mainLabel}
     </Link>
   );
 }
 
 MainNavigation.propTypes = {
-  translate: PropTypes.func,
+  mainLabel: PropTypes.string.isRequired,
 };
 
 export default MainNavigation;

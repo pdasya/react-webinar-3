@@ -4,7 +4,7 @@ import { cn as bem } from '@bem-react/classname';
 import './style.css';
 import useLocale from '../../locale/use-locale';
 
-function ItemDetails({ _id, description, vendor, category, year, price, onAdd }) {
+function ItemDetails({ _id, description, vendor, category, year, price, onAdd, labels }) {
   const cn = bem('ItemDetails');
   const { translate } = useLocale();
 
@@ -16,19 +16,19 @@ function ItemDetails({ _id, description, vendor, category, year, price, onAdd })
     <div className={cn()}>
       <div className={cn('description')}>{description}</div>
       <div className={cn('vendor')}>
-        {translate('vendor-label')}: <strong>{vendor}</strong>
+        {labels.vendor}: <strong>{vendor}</strong>
       </div>
       <div className={cn('category')}>
-        {translate('category-label')}: <strong>{category}</strong>
+        {labels.category}: <strong>{category}</strong>
       </div>
       <div className={cn('year')}>
-        {translate('year-label')}: <strong>{year}</strong>
+        {labels.year}: <strong>{year}</strong>
       </div>
       <div className={cn('price')}>
-        {translate('price-label')}: <strong>{price} ₽</strong>
+        {labels.price}: <strong>{price} ₽</strong>
       </div>
       <div className={cn('action')}>
-        <button onClick={callbacks.onAdd}>{translate('add-label')}</button>
+        <button onClick={callbacks.onAdd}>{labels.add}</button>
       </div>
     </div>
   );
@@ -42,6 +42,13 @@ ItemDetails.propTypes = {
   year: PropTypes.number,
   price: PropTypes.number,
   onAdd: PropTypes.func,
+  labels: PropTypes.shape({
+    vendor: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    add: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default memo(ItemDetails);

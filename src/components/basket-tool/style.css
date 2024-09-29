@@ -6,7 +6,8 @@
   font-size: 18px;
 }
 
-.BasketTool-label {
+.BasketTool-label,
+.BasketTool-button {
   white-space: nowrap;
 }
 

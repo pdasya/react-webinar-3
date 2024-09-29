@@ -32,6 +32,8 @@ function Basket() {
             item={item}
             onRemove={callbacks.removeFromBasket}
             onModalClose={callbacks.closeModal}
+            piecesLabel={translate('pieces-label')}
+            deleteLabel={translate('delete-label')}
           />
         );
       },
@@ -40,9 +42,13 @@ function Basket() {
   };
 
   return (
-    <ModalLayout title={translate('basket-title')} onClose={callbacks.closeModal}>
+    <ModalLayout
+      title={translate('basket-title')}
+      onClose={callbacks.closeModal}
+      closeLabel={translate('close-label')}
+    >
       <List list={select.list} renderItem={renders.itemBasket} />
-      <BasketTotal sum={select.sum} />
+      <BasketTotal sum={select.sum} totalLabel={translate('total-label')} />
     </ModalLayout>
   );
 }

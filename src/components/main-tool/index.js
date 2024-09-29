@@ -3,10 +3,10 @@ import { memo } from 'react';
 import MainNavigation from '../main-navigation';
 import './style.css';
 
-function MainTool({ children }) {
+function MainTool({ children, mainLabel }) {
   return (
     <div className="MainTool">
-      <MainNavigation to="/" />
+      <MainNavigation mainLabel={mainLabel} />
       {children}
     </div>
   );
@@ -14,6 +14,7 @@ function MainTool({ children }) {
 
 MainTool.propTypes = {
   children: PropTypes.node,
+  mainLabel: PropTypes.string.isRequired,
 };
 
 export default memo(MainTool);

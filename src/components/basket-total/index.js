@@ -5,13 +5,12 @@ import { numberFormat } from '../../utils';
 import './style.css';
 import useLocale from '../../locale/use-locale';
 
-function BasketTotal({ sum }) {
+function BasketTotal({ sum, totalLabel }) {
   const cn = bem('BasketTotal');
-  const { translate } = useLocale();
 
   return (
     <div className={cn()}>
-      <span className={cn('cell')}>{translate('total-label')}</span>
+      <span className={cn('cell')}>{totalLabel}</span>
       <span className={cn('cell')}> {numberFormat(sum)} ₽</span>
       <span className={cn('cell')}></span>
     </div>
@@ -20,6 +19,7 @@ function BasketTotal({ sum }) {
 
 BasketTotal.propTypes = {
   sum: PropTypes.number,
+  totalLabel: PropTypes.string.isRequired,
 };
 
 BasketTotal.defaultProps = {
