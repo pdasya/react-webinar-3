@@ -8,6 +8,7 @@ import PageLayout from '../../components/page-layout';
 import ItemDetails from '../../components/item-details';
 import MainTool from '../../components/main-tool';
 import useLocale from '../../locale/use-locale';
+import { getHeadLabels, getBasketLabels, getDetailsLabels, getMainLabel } from '../../utils';
 
 function Product() {
   const store = useStore();
@@ -29,29 +30,10 @@ function Product() {
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
   };
 
-  const basketLabels = {
-    inCart: translate('in-cart-label'),
-    products: {
-      one: translate('one-product-label'),
-      few: translate('few-products-label'),
-      many: translate('many-products-label'),
-    },
-    empty: translate('empty-label'),
-    go: translate('go-label'),
-  };
-
-  const headLabels = {
-    russian: translate('russian'),
-    english: translate('english'),
-  };
-
-  const detailsLabels = {
-    vendor: translate('vendor-label'),
-    category: translate('category-label'),
-    year: translate('year-label'),
-    price: translate('price-label'),
-    add: translate('add-label'),
-  };
+  const basketLabels = getBasketLabels(translate);
+  const headLabels = getHeadLabels(translate);
+  const detailsLabels = getDetailsLabels(translate);
+  const mainLabel = getMainLabel(translate);
 
   return (
     <PageLayout>
@@ -62,7 +44,7 @@ function Product() {
         languages={languagesList}
         labels={headLabels}
       />
-      <MainTool mainLabel={translate('main-label')}>
+      <MainTool mainLabel={mainLabel}>
         <BasketTool
           onOpen={callbacks.openModalBasket}
           amount={select.amount}

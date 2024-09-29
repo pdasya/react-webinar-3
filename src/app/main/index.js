@@ -9,6 +9,7 @@ import useSelector from '../../store/use-selector';
 import Pagination from '../../components/pagination';
 import useLocale from '../../locale/use-locale';
 import MainTool from '../../components/main-tool';
+import { getHeadLabels, getBasketLabels, getMainToolLabel } from '../../utils';
 
 function Main() {
   const store = useStore();
@@ -25,7 +26,7 @@ function Main() {
 
   useEffect(() => {
     store.actions.catalog.loadCurrentPageData(catalog.currentPage);
-  }, [store, catalog.currentPage]);
+  }, [store]);
 
   const callbacks = {
     // Добавление в корзину
@@ -57,21 +58,9 @@ function Main() {
     ),
   };
 
-  const basketLabels = {
-    inCart: translate('in-cart-label'),
-    products: {
-      one: translate('one-product-label'),
-      few: translate('few-products-label'),
-      many: translate('many-products-label'),
-    },
-    empty: translate('empty-label'),
-    go: translate('go-label'),
-  };
-
-  const headLabels = {
-    russian: translate('russian'),
-    english: translate('english'),
-  };
+  const basketLabels = getBasketLabels(translate);
+  const headLabels = getHeadLabels(translate);
+  const mainToolLabel = getMainToolLabel(translate);
 
   return (
     <PageLayout>
@@ -82,7 +71,7 @@ function Main() {
         languages={languagesList}
         labels={headLabels}
       />
-      <MainTool mainLabel={translate('main-page')}>
+      <MainTool mainLabel={mainToolLabel}>
         <BasketTool
           onOpen={callbacks.openModalBasket}
           amount={catalog.amount}

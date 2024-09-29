@@ -33,3 +33,31 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+export const getHeadLabels = translate => ({
+  russian: translate('russian'),
+  english: translate('english'),
+});
+
+export const getBasketLabels = translate => ({
+  inCart: translate('in-cart-label'),
+  products: {
+    one: translate('one-product-label'),
+    few: translate('few-products-label'),
+    many: translate('many-products-label'),
+  },
+  empty: translate('empty-label'),
+  go: translate('go-label'),
+});
+
+export const getDetailsLabels = translate => ({
+  vendor: translate('vendor-label'),
+  category: translate('category-label'),
+  year: translate('year-label'),
+  price: translate('price-label'),
+  add: translate('add-label'),
+});
+
+export const getMainToolLabel = translate => translate('main-page');
+
+export const getMainLabel = translate => translate('main-label');
