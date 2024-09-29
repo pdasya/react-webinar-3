@@ -6,6 +6,7 @@ import Head from '../../components/head';
 import BasketTool from '../../components/basket-tool';
 import PageLayout from '../../components/page-layout';
 import ItemDetails from '../../components/item-details';
+import MainTool from '../../components/main-tool';
 
 function Product() {
   const store = useStore();
@@ -29,7 +30,9 @@ function Product() {
   return (
     <PageLayout>
       <Head title={select.product.title} />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      <MainTool>
+        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      </MainTool>
       <ItemDetails {...select.product} onAdd={callbacks.addToBasket} />
     </PageLayout>
   );

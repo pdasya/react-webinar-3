@@ -7,6 +7,7 @@
 }
 
 .BasketTool-label {
+  white-space: nowrap;
 }
 
 .BasketTool-content {
@@ -14,6 +15,7 @@
 }
 
 .BasketTool-total {
+  white-space: nowrap;
   font-weight: bold;
   margin: 0 20px;
 }

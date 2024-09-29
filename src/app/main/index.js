@@ -8,6 +8,8 @@ import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import Pagination from '../../components/pagination';
 import useLocale from '../../locale/use-locale';
+import MainNavigation from '../../components/main-navigation';
+import MainTool from '../../components/main-tool';
 
 function Main() {
   const store = useStore();
@@ -55,7 +57,9 @@ function Main() {
   return (
     <PageLayout>
       <Head title={translate('main-title')} />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      <MainTool>
+        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      </MainTool>
       <List list={select.list} renderItem={renders.item} />
       <Pagination
         currentPage={pagination.currentPage}
