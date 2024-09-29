@@ -8,7 +8,7 @@ import PageLayout from '../../components/page-layout';
 import ItemDetails from '../../components/item-details';
 import MainTool from '../../components/main-tool';
 import useLocale from '../../locale/use-locale';
-import { getHeadLabels, getBasketLabels, getDetailsLabels, getMainLabel } from '../../utils';
+import { getHeadLabels, getBasketLabels, getDetailsLabels, getMainToolLabel } from '../../utils';
 
 function Product() {
   const store = useStore();
@@ -17,7 +17,7 @@ function Product() {
 
   useEffect(() => {
     store.actions.product.load(id);
-  }, []);
+  }, [id, store]);
 
   const select = useSelector(state => ({
     amount: state.basket.amount,
@@ -33,7 +33,7 @@ function Product() {
   const basketLabels = getBasketLabels(translate);
   const headLabels = getHeadLabels(translate);
   const detailsLabels = getDetailsLabels(translate);
-  const mainLabel = getMainLabel(translate);
+  const mainLabel = getMainToolLabel(translate);
 
   return (
     <PageLayout>
