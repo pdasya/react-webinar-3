@@ -14,21 +14,18 @@ function Main() {
   const store = useStore();
   const { translate } = useLocale();
 
-  const pagination = useSelector(state => ({
-    currentPage: state.pagination.currentPage,
-    totalPages: state.pagination.totalPages,
-    limit: state.pagination.limit,
-  }));
-
-  useEffect(() => {
-    store.actions.pagination.loadCurrentPageData(pagination.currentPage);
-  }, [store]);
-
-  const select = useSelector(state => ({
+  const catalog = useSelector(state => ({
     list: state.catalog.list,
+    currentPage: state.catalog.currentPage,
+    totalPages: state.catalog.totalPages,
+    limit: state.catalog.limit,
     amount: state.basket.amount,
     sum: state.basket.sum,
   }));
+
+  useEffect(() => {
+    store.actions.catalog.loadCurrentPageData(catalog.currentPage);
+  }, [store, catalog.currentPage]);
 
   const callbacks = {
     // Добавление в корзину
@@ -38,7 +35,7 @@ function Main() {
     // Изменение страницы
     changePage: useCallback(
       page => {
-        store.actions.pagination.setCurrentPage(page);
+        store.actions.catalog.setCurrentPage(page);
       },
       [store],
     ),
@@ -59,12 +56,12 @@ function Main() {
     <PageLayout>
       <Head title={translate('main-title')} />
       <MainTool>
-        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+        <BasketTool onOpen={callbacks.openModalBasket} amount={catalog.amount} sum={catalog.sum} />
       </MainTool>
-      <List list={select.list} renderItem={renders.item} />
+      <List list={catalog.list} renderItem={renders.item} />
       <Pagination
-        currentPage={pagination.currentPage}
-        totalPages={pagination.totalPages}
+        currentPage={catalog.currentPage}
+        totalPages={catalog.totalPages}
         onPageChange={callbacks.changePage}
       />
     </PageLayout>
