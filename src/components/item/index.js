@@ -18,7 +18,7 @@ function Item(props) {
     <div className={cn()}>
       {/*<div className={cn('code')}>{props.item._id}</div>*/}
       <div className={cn('title')}>
-        <Link to={`/product/${props.item._id}`}>{props.item.title}</Link>
+        <Link to={props.productLink || `/product/${props.item._id}`}>{props.item.title}</Link>
       </div>
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(props.item.price)} ₽</div>
@@ -35,10 +35,12 @@ Item.propTypes = {
     price: PropTypes.number,
   }).isRequired,
   onAdd: PropTypes.func,
+  productLink: PropTypes.string,
 };
 
 Item.defaultProps = {
   onAdd: () => {},
+  productLink: '',
 };
 
 export default memo(Item);

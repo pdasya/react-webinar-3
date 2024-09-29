@@ -8,7 +8,6 @@ import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import Pagination from '../../components/pagination';
 import useLocale from '../../locale/use-locale';
-import MainNavigation from '../../components/main-navigation';
 import MainTool from '../../components/main-tool';
 
 function Main() {
@@ -48,7 +47,9 @@ function Main() {
   const renders = {
     item: useCallback(
       item => {
-        return <Item item={item} onAdd={callbacks.addToBasket} />;
+        return (
+          <Item item={item} onAdd={callbacks.addToBasket} productLink={`/product/${item._id}`} />
+        );
       },
       [callbacks.addToBasket],
     ),
