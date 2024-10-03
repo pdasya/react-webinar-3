@@ -26,7 +26,7 @@
   "profile.name": "Name",
   "profile.phone": "Phone",
   "profile.email": "Email",
-  "login": "Login",
+  "login": "Log in",
   "logout": "Log out",
-  "getIn": "Get In"
+  "getIn": "Log in"
 }

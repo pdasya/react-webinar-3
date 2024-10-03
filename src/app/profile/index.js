@@ -1,14 +1,16 @@
 import { memo, useCallback, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useTranslate from '../../hooks/use-translate';
 import useSelector from '../../hooks/use-selector';
 import useStore from '../../hooks/use-store';
 import useInit from '../../hooks/use-init';
 import LocaleSelect from '../../containers/locale-select';
 import Navigation from '../../containers/navigation';
-import AuthPanel from '../../containers/auth-panel';
+import AuthBlock from '../../containers/auth-block';
 import Head from '../../components/head';
 import PageLayout from '../../components/page-layout';
+import ProfileInfo from '../../components/profile-info';
+
 /**
  * Страница профиля
  */
@@ -18,27 +20,29 @@ function Profile() {
   const navigate = useNavigate();
 
   useInit(() => {
-    store.actions.user.getProfile();
+    store.actions.user.fetchUserProfile();
   }, []);
 
   const select = useSelector(state => ({
-    profile: state.user.data,
-    error: state.user.error,
-    waiting: state.user.waiting,
+    profile: state.user.userInfo,
+    error: state.user.fetchError,
+    waiting: state.user.isLoading,
     username: state.auth.username,
   }));
 
   const callbacks = {
-    setUsername: useCallback(username => store.actions.auth.setUsername(username), [store]),
+    setUsername: useCallback(username => store.actions.auth.setUser(username), [store]),
     logOutHandler: useCallback(async () => {
-      await store.actions.auth.logout();
-      navigate('/login');
+      await store.actions.auth.signOut();
+      navigate('/auth');
     }, [store]),
   };
 
   useEffect(() => {
-    if (select.profile.username) callbacks.setUsername(select.profile.username);
-  }, [select.profile.username]);
+    if (select.profile.loginName) {
+      callbacks.setUsername(select.profile.loginName);
+    }
+  }, [select.profile.loginName]);
 
   useEffect(() => {
     if (select.error) {
@@ -46,14 +50,20 @@ function Profile() {
     }
   }, [select.error]);
 
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/auth');
+    }
+  }, [select.username]);
+
   return (
     <PageLayout>
-      <AuthPanel />
+      <AuthBlock />
       <Head title={t('title')}>
         <LocaleSelect />
       </Head>
       <Navigation />
-      <div>Страница профиля работает</div>
+      <ProfileInfo profile={select.profile} />
     </PageLayout>
   );
 }
