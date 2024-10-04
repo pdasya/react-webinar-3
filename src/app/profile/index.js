@@ -10,6 +10,7 @@ import AuthBlock from '../../containers/auth-block';
 import Head from '../../components/head';
 import PageLayout from '../../components/page-layout';
 import ProfileInfo from '../../components/profile-info';
+import PrivateRoute from '../../containers/private-route';
 
 /**
  * Страница профиля
@@ -30,26 +31,6 @@ function Profile() {
     username: state.auth.username,
   }));
 
-  const callbacks = {
-    setUsername: useCallback(username => store.actions.auth.setUser(username), [store]),
-    logOutHandler: useCallback(async () => {
-      await store.actions.auth.signOut();
-      navigate('/auth');
-    }, [store]),
-  };
-
-  useEffect(() => {
-    if (select.profile.loginName) {
-      callbacks.setUsername(select.profile.loginName);
-    }
-  }, [select.profile.loginName]);
-
-  useEffect(() => {
-    if (select.error) {
-      callbacks.logOutHandler();
-    }
-  }, [select.error]);
-
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate('/auth');
@@ -57,14 +38,16 @@ function Profile() {
   }, [select.username]);
 
   return (
-    <PageLayout>
-      <AuthBlock />
-      <Head title={t('title')}>
-        <LocaleSelect />
-      </Head>
-      <Navigation />
-      <ProfileInfo profile={select.profile} />
-    </PageLayout>
+    <PrivateRoute redirectTo="/auth" inverse={false}>
+      <PageLayout>
+        <AuthBlock />
+        <Head title={t('title')}>
+          <LocaleSelect />
+        </Head>
+        <Navigation />
+        <ProfileInfo profile={select.profile} />
+      </PageLayout>
+    </PrivateRoute>
   );
 }
 
