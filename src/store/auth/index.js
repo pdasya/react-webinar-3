@@ -6,7 +6,7 @@ const DEFAULT_AUTH_STATE = {
   user: null,
   authError: null,
   isAuthenticating: false,
-  isAuthentificated: false,
+  isAuthenticated: false,
 };
 
 class AuthState extends StoreModule {
@@ -131,6 +131,49 @@ class AuthState extends StoreModule {
       passwordValue: '',
       authError: null,
     });
+  }
+
+  async restoreSession() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return; // Если токена нет, просто выходим
+    }
+
+    try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Token': token,
+        },
+      };
+
+      const response = await fetch(`/api/v1/users/self?fields=*`, options);
+      const json = await response.json();
+
+      if (json.error) {
+        throw new Error(json.error.data?.issues?.[0]?.message || 'Ошибка восстановления сессии!');
+      }
+
+      const { username } = json.result;
+
+      this.setState(
+        {
+          user: username,
+          isAuthenticated: true,
+          authError: null,
+        },
+        'Сессия восстановлена',
+      );
+    } catch (error) {
+      localStorage.removeItem('token');
+      this.setState({
+        user: null,
+        isAuthenticated: false,
+        authError: error.message,
+      });
+    }
   }
 }
 

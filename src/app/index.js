@@ -6,6 +6,7 @@ import Basket from './basket';
 import Article from './article';
 import Auth from './auth';
 import Profile from './profile';
+import useStore from '../hooks/use-store';
 
 /**
  * Приложение
@@ -13,6 +14,11 @@ import Profile from './profile';
  */
 function App() {
   const activeModal = useSelector(state => state.modals.name);
+  const store = useStore();
+
+  useEffect(() => {
+    store.actions.auth.restoreSession(); // Восстановление сессии при загрузке приложения
+  }, [store]);
 
   return (
     <>
