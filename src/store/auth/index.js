@@ -6,6 +6,7 @@ const DEFAULT_AUTH_STATE = {
   user: null,
   authError: null,
   isAuthenticating: false,
+  isAuthentificated: false,
 };
 
 class AuthState extends StoreModule {
@@ -52,6 +53,7 @@ class AuthState extends StoreModule {
             user: username,
             authError: null,
             isAuthenticating: false,
+            isAuthenticated: true,
           },
           'Пользователь успешно вошел в систему',
         );
@@ -62,6 +64,7 @@ class AuthState extends StoreModule {
         user: null,
         authError: error.message,
         isAuthenticating: false,
+        isAuthenticated: false,
       });
     }
   }
@@ -118,6 +121,15 @@ class AuthState extends StoreModule {
     this.setState({
       ...this.getState(),
       user: username,
+    });
+  }
+
+  resetForm() {
+    this.setState({
+      ...this.getState(),
+      loginValue: '',
+      passwordValue: '',
+      authError: null,
     });
   }
 }

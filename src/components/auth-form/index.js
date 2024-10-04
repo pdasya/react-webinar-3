@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import useStore from '../../hooks/use-store';
@@ -7,6 +7,7 @@ import Input from '../input';
 import Spinner from '../spinner';
 import './style.css';
 import useTranslate from '../../hooks/use-translate';
+import { useNavigate } from 'react-router-dom';
 
 function AuthForm() {
   const cn = bem('AuthForm');
@@ -14,6 +15,7 @@ function AuthForm() {
   const { t } = useTranslate();
 
   const store = useStore();
+  const navigate = useNavigate();
 
   const select = useSelector(state => ({
     login: state.auth.loginValue,
@@ -23,10 +25,21 @@ function AuthForm() {
   }));
 
   const callbacks = {
-    onSubmitForm: useCallback(() => store.actions.auth.auth(), [store]),
+    onSubmitForm: useCallback(async () => {
+      await store.actions.auth.auth();
+      if (store.getState().auth.isAuthenticated) {
+        navigate('/');
+      }
+    }, [store, navigate]),
     onChangeLogin: useCallback(value => store.actions.auth.setLoginValue(value), [store]),
     onChangePassword: useCallback(value => store.actions.auth.setPasswordValue(value), [store]),
   };
+
+  useEffect(() => {
+    return () => {
+      store.actions.auth.resetForm();
+    };
+  }, [store]);
 
   return (
     <div className={cn()}>
@@ -38,22 +51,22 @@ function AuthForm() {
         }}
       >
         <Spinner active={select.waiting}>
-          <div className={cn('row')}>
+          <div className={cn('input')}>
+            <label htmlFor="username">{t('login.username')}</label>
             <Input
               id="username"
               value={select.login}
               onChange={callbacks.onChangeLogin}
-              placeholder={t('login.username.placeholder')}
               label={t('login.username')}
             />
           </div>
-          <div className={cn('row')}>
+          <div className={cn('input')}>
+            <label htmlFor="username">{t('login.password')}</label>
             <Input
               id="password"
               type="password"
               value={select.password}
               onChange={callbacks.onChangePassword}
-              placeholder={t('login.password.placeholder')}
               label={t('login.password')}
             />
           </div>
