@@ -13,32 +13,30 @@ import TopHead from '../../containers/top-head';
 import { useDispatch, useSelector } from 'react-redux';
 import shallowequal from 'shallowequal';
 import articleActions from '../../store-redux/article/actions';
-import commentActions from '../../store-redux/comment/actions';
-import CommentCard from '../../components/comment-card';
+import commentActions from '../../store-redux/comments/actions';
+import CommentsList from '../../components/comments-list';
 
 function Article() {
   const store = useStore();
 
   const dispatch = useDispatch();
-  // Параметры из пути /articles/:id
-
   const params = useParams();
 
   useInit(() => {
-    //store.actions.article.load(params.id);
     dispatch(articleActions.load(params.id));
-    dispatch(commentActions.load(params.id));
+    dispatch(commentActions.loadAll()); // Загрузка всех комментариев
   }, [params.id]);
 
   const select = useSelector(
     state => ({
       article: state.article.data,
-      comment: state.comment.data,
+      comments: state.comments.comments,
+      commentsCount: state.comments.count,
       waitingArticle: state.article.waiting,
-      // waitingComments: state.comments.waiting,
+      waitingComments: state.comments.waiting,
     }),
     shallowequal,
-  ); // Нужно указать функцию для сравнения свойства объекта, так как хуком вернули объект
+  );
 
   const { t } = useTranslate();
 
@@ -54,10 +52,10 @@ function Article() {
         <LocaleSelect />
       </Head>
       <Navigation />
-      <Spinner active={select.waiting}>
+      <Spinner active={select.waitingArticle || select.waitingComments}>
         <ArticleCard article={select.article} onAdd={callbacks.addToBasket} t={t} />
+        <CommentsList comments={select.comments} commentsCount={select.commentsCount} />
       </Spinner>
-      <CommentCard comment={select.comment} />
     </PageLayout>
   );
 }

@@ -2,6 +2,7 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
+import formatDate from '../../utils/date-format';
 
 function CommentCard(props) {
   const { comment } = props;
@@ -10,8 +11,8 @@ function CommentCard(props) {
   return (
     <div className={cn()}>
       <div className={cn('header')}>
-        <span className={cn('username')}>{comment.author?._id || 'Anonymous'}</span>
-        <span className={cn('date')}>{new Date(comment.dateCreate).toLocaleDateString()}</span>
+        <span className={cn('username')}>{comment.author?.profile.name || 'Anonymous'}</span>
+        <span className={cn('date')}>{formatDate(comment.dateCreate)}</span>
       </div>
       <div className={cn('main')}>{comment.text || 'No content available'}</div>
       <a href="#" className={cn('link')}>
