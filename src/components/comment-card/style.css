@@ -1,0 +1,41 @@
+.CommentCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 20px 40px;
+}
+
+.CommentCard-username {
+  margin-right: 10px;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.15;
+  color: #000000;
+}
+
+.CommentCard-date {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.15;
+  color: #666666;
+}
+
+.CommentCard-main {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.15;
+  color: #000000;
+}
+
+.CommentCard-link {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.15;
+  color: #0087e9;
+}
+
+.CommentCard-link:hover {
+  cursor: pointer;
+}
