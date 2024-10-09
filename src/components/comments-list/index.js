@@ -4,15 +4,24 @@ import CommentCard from '../comment-card';
 import './style.css';
 import { cn as bem } from '@bem-react/classname';
 
-function CommentList({ comments, commentsCount }) {
+function CommentList({ comments }) {
   const cn = bem('CommentList');
+
+  function renderComments(comments, level = 0) {
+    return comments.map(comment => (
+      <div key={comment._id} style={{ marginLeft: level > 0 ? '30px' : '0' }}>
+        <CommentCard comment={comment} />
+        {comment.children && comment.children.length > 0 && (
+          <div>{renderComments(comment.children, level + 1)}</div>
+        )}
+      </div>
+    ));
+  }
 
   return (
     <div className={cn()}>
-      <h3 className={cn('header')}>Комментарии ({commentsCount})</h3>
-      {comments.map(comment => (
-        <CommentCard key={comment._id} comment={comment} />
-      ))}
+      <h3 className={cn('header')}>Комментарии ({comments.length})</h3>
+      {renderComments(comments)}
     </div>
   );
 }
@@ -31,7 +40,6 @@ CommentList.propTypes = {
       }),
     }),
   ).isRequired,
-  commentsCount: PropTypes.number,
 };
 
 export default memo(CommentList);
