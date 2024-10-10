@@ -14,7 +14,7 @@ import { useDispatch, useSelector as useSelectorRedux } from 'react-redux';
 import shallowequal from 'shallowequal';
 import articleActions from '../../store-redux/article/actions';
 import commentActions from '../../store-redux/comments/actions';
-import CommentsList from '../../components/comments-list';
+import CommentsList from '../../containers/comments-list';
 import buildCommentTree from '../../utils/build-comment-tree';
 import useSelector from '../../hooks/use-selector';
 
@@ -57,6 +57,7 @@ function Article() {
       },
       [dispatch, select.username, commentActions],
     ),
+    // Создание нового ответа на комментарий
     addResponse: useCallback(
       (text, commentId) => {
         dispatch(commentActions.createComment(select.username, text, commentId, 'comment'));

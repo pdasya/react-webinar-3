@@ -22,5 +22,21 @@
   "auth.password": "Пароль",
   "auth.signIn": "Войти",
   "session.signIn": "Вход",
-  "session.signOut": "Выход"
+  "session.signOut": "Выход",
+  "commentCard.username": "Анонимный пользователь",
+  "commentCard.text": "Контент недоступен",
+  "commentCard.submit": "Ответить",
+  "commentForm.submit": "Отправить",
+  "commentForm.cancel": "Отмена",
+  "commentHeader.comments": "Комментарии",
+  "notification.login": "Войдите",
+  "notification.text": ", чтобы иметь возможность",
+  "notification.response": " ответить",
+  "notification.comment": " комментировать",
+  "notification.cancel": "Отмена",
+  "commentList.newResponse": "Новый ответ",
+  "commentList.responsePlaceholder": "Мой ответ для ",
+  "commentList.name": "Анонимный пользователь",
+  "commentList.newComment": "Новый комментарий",
+  "commentList.commentPlaceholder": "Текст "
 }

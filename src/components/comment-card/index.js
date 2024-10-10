@@ -5,18 +5,20 @@ import './style.css';
 import formatDate from '../../utils/date-format';
 
 function CommentCard(props) {
-  const { comment, onClick } = props;
+  const { comment, onClick, t = text => text } = props;
   const cn = bem('CommentCard');
 
   return (
     <div className={cn()}>
       <div className={cn('header')}>
-        <span className={cn('username')}>{comment.author?.profile.name || 'Anonymous'}</span>
+        <span className={cn('username')}>
+          {comment.author?.profile.name || t('commentCard.username')}
+        </span>
         <span className={cn('date')}>{formatDate(comment.dateCreate)}</span>
       </div>
-      <div className={cn('main')}>{comment.text || 'No content available'}</div>
+      <div className={cn('main')}>{comment.text || t('commentCard.text')}</div>
       <button className={cn('link')} onClick={onClick}>
-        Ответить
+        {t('commentCard.submit')}
       </button>
     </div>
   );
@@ -31,6 +33,8 @@ CommentCard.propTypes = {
       _id: PropTypes.string.isRequired,
     }),
   }).isRequired,
+  onClick: PropTypes.func,
+  t: PropTypes.func,
 };
 
 export default memo(CommentCard);

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
-function CommentForm({ title, onSubmit, onCancel, placeholder }) {
+function CommentForm(props) {
+  const { title, onSubmit, onCancel, placeholder, t = text => text } = props;
   const [text, setText] = useState('');
   const cn = bem('CommentForm');
 
@@ -25,9 +26,9 @@ function CommentForm({ title, onSubmit, onCancel, placeholder }) {
       />
       <div className={cn('prop')}>
         <button className={cn('button')} onClick={handleSubmit}>
-          Отправить
+          {t('commentForm.submit')}
         </button>
-        {onCancel && <button onClick={onCancel}>Отмена</button>}
+        {onCancel && <button onClick={onCancel}>{t('commentForm.cancel')}</button>}
       </div>
     </div>
   );
@@ -38,6 +39,7 @@ CommentForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
   placeholder: PropTypes.string,
+  t: PropTypes.func,
 };
 
 export default CommentForm;

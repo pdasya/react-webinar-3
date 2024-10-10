@@ -2,24 +2,34 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
+import propTypes from 'prop-types';
 
-function Notification({ showCancel, onCancel }) {
+function Notification(props) {
+  const { showCancel, onCancel, t = text => text } = props;
   const cn = bem('Notification');
   const location = useLocation();
 
   return (
     <div className={cn()}>
       <Link className={cn('link')} to="/login" state={{ back: location.pathname }}>
-        Войдите
+        {t('notification.login')}
       </Link>
-      <div>, чтобы иметь возможность {showCancel ? 'ответить' : 'комментировать'}</div>
+      <div>
+        {t('notification.text')}{' '}
+        {showCancel ? t('notification.response') : t('notification.comment')}
+      </div>
       {showCancel && (
         <button className={cn('cancel')} onClick={onCancel}>
-          Отмена
+          {t('notification.cancel')}
         </button>
       )}
     </div>
   );
 }
+
+Notification.propTypes = {
+  showCancel: propTypes.bool,
+  onCancel: propTypes.func,
+};
 
 export default Notification;

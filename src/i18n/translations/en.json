@@ -20,5 +20,21 @@
   "auth.password": "Password",
   "auth.signIn": "Sign in",
   "session.signIn": "Sign In",
-  "session.signOut": "Sign Out"
+  "session.signOut": "Sign Out",
+  "commentCard.username": "Anonymous",
+  "commentCard.text": "No content available",
+  "commentCard.submit": "Response",
+  "commentForm.submit": "Submit",
+  "commentForm.cancel": "Cancel",
+  "commentHeader.comments": "Comments",
+  "notification.login": "Log in",
+  "notification.text": "to have an opportunity",
+  "notification.response": "to response",
+  "notification.comment": "to comment",
+  "notification.cancel": "Cancel",
+  "commentList.newResponse": "New response",
+  "commentList.responsePlaceholder": "My response for ",
+  "commentList.name": "Anonymous",
+  "commentList.newComment": "New comment",
+  "commentList.commentPlaceholder": "Text "
 }
