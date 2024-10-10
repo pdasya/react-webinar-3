@@ -43,7 +43,7 @@ function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit }
         t={t}
       />
     ) : (
-      <Notification showCancel={true} onCancel={handleCancelReply} />
+      <Notification showCancel={true} onCancel={handleCancelReply} t={t} />
     );
 
   const renderComments = useCallback(
