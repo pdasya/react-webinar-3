@@ -5,7 +5,7 @@ import './style.css';
 import formatDate from '../../utils/date-format';
 
 function CommentCard(props) {
-  const { comment } = props;
+  const { comment, onClick } = props;
   const cn = bem('CommentCard');
 
   return (
@@ -15,7 +15,9 @@ function CommentCard(props) {
         <span className={cn('date')}>{formatDate(comment.dateCreate)}</span>
       </div>
       <div className={cn('main')}>{comment.text || 'No content available'}</div>
-      <button className={cn('link')}>Ответить</button>
+      <button className={cn('link')} onClick={onClick}>
+        Ответить
+      </button>
     </div>
   );
 }
