@@ -36,6 +36,9 @@
   line-height: 1.15;
   color: #0087e9;
   text-decoration: none;
+  padding-left: 0;
+  background: none;
+  border: none;
 }
 
 .CommentCard-link:hover {

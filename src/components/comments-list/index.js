@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import CommentCard from '../comment-card';
 import './style.css';
 import { cn as bem } from '@bem-react/classname';
+import Notification from '../notification';
+import CommentForm from '../comment-form';
 
-function CommentList({ comments }) {
+function CommentList({ comments, isLoggedIn, onCommentSubmit }) {
   const cn = bem('CommentList');
 
   function renderComments(comments, level = 0) {
@@ -22,6 +24,11 @@ function CommentList({ comments }) {
     <div className={cn()}>
       <h3 className={cn('header')}>Комментарии ({comments.length})</h3>
       {renderComments(comments)}
+      {!isLoggedIn ? (
+        <Notification showCancel={isLoggedIn} />
+      ) : (
+        <CommentForm title={'Новый комментарий'} onSubmit={onCommentSubmit} placeholder={'Текст'} />
+      )}
     </div>
   );
 }

@@ -15,9 +15,7 @@ function CommentCard(props) {
         <span className={cn('date')}>{formatDate(comment.dateCreate)}</span>
       </div>
       <div className={cn('main')}>{comment.text || 'No content available'}</div>
-      <a href="#" className={cn('link')}>
-        Ответить
-      </a>
+      <button className={cn('link')}>Ответить</button>
     </div>
   );
 }

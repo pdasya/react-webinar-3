@@ -39,6 +39,18 @@ function reducer(state = initialState, action) {
         error: 'Ошибка загрузки комментариев',
       };
 
+    case 'comments/create-comment-start':
+      return { ...state, waiting: true };
+
+    case 'comments/create-comment-success':
+      return {
+        ...state,
+        data: { ...state.data, items: [...state.data.items, action.payload.data] },
+        waiting: false,
+      };
+
+    case 'comments/create-comment-error':
+      return { ...state, waiting: false };
     default:
       // Нет изменений
       return state;
