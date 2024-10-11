@@ -27,7 +27,7 @@ function Article() {
   useInit(() => {
     dispatch(articleActions.load(params.id));
     dispatch(commentActions.loadAll(params.id)); // Загрузка всех комментариев
-  }, [params.id]);
+  }, [params.id, lang]);
 
   const select = useSelectorRedux(
     state => ({
@@ -44,7 +44,7 @@ function Article() {
     username: state.session.user?.profile?.name,
   }));
 
-  const { t } = useTranslate();
+  const { t, lang } = useTranslate();
 
   const callbacks = {
     // Добавление в корзину

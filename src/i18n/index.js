@@ -1,4 +1,3 @@
-// services/i18n/index.ts
 import { EventEmitter } from 'events';
 import * as translations from './translations';
 

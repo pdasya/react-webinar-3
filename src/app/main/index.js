@@ -17,11 +17,11 @@ function Main() {
     async () => {
       await Promise.all([store.actions.catalog.initParams(), store.actions.categories.load()]);
     },
-    [],
+    [lang],
     true,
   );
 
-  const { t } = useTranslate();
+  const { t, lang } = useTranslate();
 
   return (
     <PageLayout>

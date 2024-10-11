@@ -70,7 +70,7 @@ function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit }
     <div className={cn()}>
       <CommentHeader count={comments.length} t={t} />
       {renderComments(comments)}
-      {!isLoggedIn && !replyingTo && <Notification showCancel={isLoggedIn} />}
+      {!isLoggedIn && !replyingTo && <Notification showCancel={isLoggedIn} t={t} />}
       {isLoggedIn && !replyingTo && (
         <CommentForm
           title={t('commentList.newComment')}
