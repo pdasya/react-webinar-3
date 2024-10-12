@@ -21,6 +21,10 @@ export default function formatDate(dateString) {
 
   const date = new Date(dateString);
 
+  if (isNaN(date)) {
+    return 'Invalid date';
+  }
+
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();

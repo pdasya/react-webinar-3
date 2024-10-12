@@ -33,7 +33,7 @@ function Article() {
   const select = useSelectorRedux(
     state => ({
       article: state.article.data,
-      comments: buildCommentTree(state.comments.comments),
+      comments: state.comments.comments,
       waitingArticle: state.article.waiting,
       waitingComments: state.comments.waiting,
     }),
