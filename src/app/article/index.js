@@ -17,6 +17,7 @@ import commentActions from '../../store-redux/comments/actions';
 import CommentsList from '../../containers/comments-list';
 import buildCommentTree from '../../utils/build-comment-tree';
 import useSelector from '../../hooks/use-selector';
+import listToTree from '../../utils/list-to-tree';
 
 function Article() {
   const store = useStore();
@@ -53,17 +54,15 @@ function Article() {
     addComment: useCallback(
       text => {
         dispatch(commentActions.createComment(select.username, text, params.id, 'article'));
-        dispatch(commentActions.loadAll(params.id));
       },
-      [dispatch, select.username, commentActions],
+      [dispatch, select.username, commentActions, store],
     ),
     // Создание нового ответа на комментарий
     addResponse: useCallback(
       (text, commentId) => {
         dispatch(commentActions.createComment(select.username, text, commentId, 'comment'));
-        dispatch(commentActions.loadAll(params.id));
       },
-      [dispatch, select.username, commentActions],
+      [dispatch, select.username, commentActions, store],
     ),
   };
 
@@ -81,6 +80,7 @@ function Article() {
           isLoggedIn={oldSelect.isLoggedIn}
           onCommentSubmit={callbacks.addComment}
           onResponseSubmit={callbacks.addResponse}
+          currentUserName={oldSelect.username}
         />
       </Spinner>
     </PageLayout>

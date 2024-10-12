@@ -5,13 +5,19 @@ import './style.css';
 import formatDate from '../../utils/date-format';
 
 function CommentCard(props) {
-  const { comment, onClick, t = text => text } = props;
+  const { comment, onClick, t = text => text, isLoggedIn, currentUserName } = props;
   const cn = bem('CommentCard');
 
   return (
     <div className={cn()}>
       <div className={cn('header')}>
-        <span className={cn('username')}>
+        <span
+          className={
+            isLoggedIn && comment.author?.profile.name === currentUserName
+              ? cn('active')
+              : cn('username')
+          }
+        >
           {comment.author?.profile.name || t('commentCard.username')}
         </span>
         <span className={cn('date')}>{formatDate(comment.dateCreate)}</span>
@@ -35,6 +41,8 @@ CommentCard.propTypes = {
   }).isRequired,
   onClick: PropTypes.func,
   t: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
+  currentUserName: PropTypes.string,
 };
 
 export default memo(CommentCard);

@@ -16,6 +16,15 @@
   color: #000000;
 }
 
+.CommentCard-active {
+  margin-right: 10px;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.15;
+  color: #535353;
+}
+
 .CommentCard-date {
   font-weight: 400;
   font-size: 12px;
@@ -28,6 +37,10 @@
   font-size: 14px;
   line-height: 1.15;
   color: #000000;
+  max-width: 40vw;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .CommentCard-link {

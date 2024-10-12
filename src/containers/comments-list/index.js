@@ -7,7 +7,7 @@ import CommentForm from '../../components/comment-form';
 import CommentHeader from '../../components/comments-header';
 import useTranslate from '../../hooks/use-translate';
 
-function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit }) {
+function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit, currentUserName }) {
   const cn = bem('CommentList');
   const [replyingTo, setReplyingTo] = useState(null);
   const [replyingToAuthor, setReplyingToAuthor] = useState('');
@@ -49,13 +49,15 @@ function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit }
   const renderComments = useCallback(
     (comments, level = 0) =>
       comments.map(comment => (
-        <div key={comment._id} style={{ marginLeft: level > 0 ? '30px' : '0' }}>
+        <div key={comment._id} style={{ marginLeft: level > 0 && level < 10 ? '30px' : '0' }}>
           <CommentCard
             comment={comment}
             onClick={() =>
               handleReplyClick(comment._id, comment.author?.profile?.name || t('commentList.name'))
             }
             t={t}
+            isLoggedIn={isLoggedIn}
+            currentUserName={currentUserName}
           />
           {replyingTo === comment._id && renderReplyForm(comment._id)}
           {comment.children &&
@@ -71,7 +73,7 @@ function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit }
       <CommentHeader count={comments.length} t={t} />
       {renderComments(comments)}
       {!isLoggedIn && !replyingTo && <Notification showCancel={isLoggedIn} t={t} />}
-      {isLoggedIn && !replyingTo && (
+      {isLoggedIn && (
         <CommentForm
           title={t('commentList.newComment')}
           onSubmit={onCommentSubmit}
@@ -100,6 +102,7 @@ CommentList.propTypes = {
   isLoggedIn: PropTypes.bool,
   onCommentSubmit: PropTypes.func.isRequired,
   onResponseSubmit: PropTypes.func.isRequired,
+  currentUserName: PropTypes.string,
 };
 
 export default memo(CommentList);
