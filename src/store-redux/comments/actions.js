@@ -52,13 +52,10 @@ export default {
     return async (dispatch, getState, services) => {
       dispatch({ type: 'comments/create-comment-start' });
 
-      const token = localStorage.getItem('token');
-
       try {
         const res = await services.api.request({
           url: '/api/v1/comments',
           method: 'POST',
-          headers: { [services.config.store.modules.session.tokenHeader]: token },
           body: JSON.stringify({
             text: commentText,
             parent: { _id: id, _type: type },

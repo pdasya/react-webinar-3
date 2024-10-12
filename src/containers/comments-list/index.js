@@ -82,7 +82,9 @@ function CommentList({ comments, isLoggedIn, onCommentSubmit, onResponseSubmit, 
   return (
     <div className={cn()}>
       <CommentHeader count={comments.length} t={t} />
-      {hierarchicalComments.map(renderComment)}
+      {hierarchicalComments.map((comment, index) => (
+        <div key={index}>{renderComment(comment)}</div>
+      ))}
       {!isLoggedIn && !replyingTo && <Notification showCancel={isLoggedIn} t={t} />}
       {isLoggedIn && (
         <CommentForm
